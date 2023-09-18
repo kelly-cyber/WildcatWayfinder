@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Use html tags to construct a table, then iterate over the records and add a row for each record -->
+<head>
+    <meta charset="UTF-8">
+    <title>Records</title>
+    <style>
+        table, th, td {
+            border: 1px solid white;
+            padding: 5px;
+        }
+
+
+        th, td {
+            width: 150px;
+        }
+
+        .center {
+            display:flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        body {
+          background-color: #000000;
+          color: #FFFFFF;
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 14px;
+          line-height: 1.5;
+          padding: 20px;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+            color: white;
+        }
+
+        text {
+            color: white;
+        }
+
+        a {
+            color: #00FFFF;
+        }
+
+    </style>
+</head>
+<h1>Records</h1>
+<div class="center">
+    <p>Click <a href="{{ url_for('index') }}">here</a> to go back.<br>Click <a href="{{ url_for('create') }}">here</a> to create a record.</p>
+</div>
+<div class="center">
+    <body>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.name }}</td>
+                <td>{{ record.age }}</td>
+                <td>{{ record.city }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</div>
+</html>

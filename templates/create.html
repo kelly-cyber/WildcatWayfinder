@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateRecords</title>
+    <style>
+        th, td {
+            border: 1px solid white;
+            padding: 5px;
+            width: 150px;
+        }
+
+        .center {
+            display:flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        body {
+          background-color: #000000;
+          color: #FFFFFF;
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 14px;
+          line-height: 1.5;
+          padding: 20px;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+            color: white;
+        }
+
+        a {
+            color: #00FFFF;
+        }
+
+        text {
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px;
+            color: white;
+        }
+
+        label, input {
+            margin-top: 10px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Create a Record</h1>
+    <div class="center">
+    <p>Click <a href="{{ url_for('index') }}">here</a> to go back.</p>
+    </div>
+    <form action="{{ url_for('create') }}" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <label for="age">Age:</label>
+        <input type="text" name="age" id="age">
+        <label for="city">City:</label>
+        <input type="text" name="city" id="city">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

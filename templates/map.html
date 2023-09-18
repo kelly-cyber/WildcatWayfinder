@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps </title>
+    <style>
+        #map {
+            height: 90%;
+            width: 100%;
+        }
+
+        #navbar {
+            height: 10%;
+            width: 100%;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV6xo3duC37B7z4RGcamphREa2ZyDhtbQ&callback=initMap" async defer></script>
+    <script>
+        var map, directionsService, directionsRenderer;
+
+        function initMap() {
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 43.1341, lng: -70.9264},
+                zoom: 16
+            });
+
+            directionsRenderer.setMap(map);
+        }
+
+        async function geocodeAddress(address) {
+            const response = await fetch(`/geocode?address=${encodeURIComponent(address)}`);
+            const data = await response.json();
+            if (data.status === 'OK' && data.results && data.results.length > 0) {
+                return data.results[0].geometry.location;
+            } else {
+                throw new Error(`Geocoding failed for address: ${address}`);
+            }
+        }
+
+        async function calculateRoute() {
+            const start = document.getElementById('start').value;
+            const end = document.getElementById('end').value;
+            const waypointsInput = document.getElementById('waypoints').value;
+            const waypointsAddresses = waypointsInput.split(';');
+
+            try {
+                const startCoords = await geocodeAddress(start);
+                const endCoords = await geocodeAddress(end);
+
+                const waypoints = [];
+
+                for (const address of waypointsAddresses) {
+                    if (address.trim() !== '') {
+                        const coords = await geocodeAddress(address.trim());
+                        waypoints.push({
+                            location: coords,
+                            stopover: true
+                        });
+                    }
+                }
+
+                directionsService.route({
+                    origin: startCoords,
+                    destination: endCoords,
+                    waypoints: waypoints,
+                    optimizeWaypoints: true,
+                    travelMode: 'WALKING'
+                }, function(response, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(response);
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            } catch (error) {
+                window.alert('Geocoding error: ' + error.message);
+            }
+        }
+    </script>
+</head>
+<body onload="initMap()">
+    <div id="navbar">
+        <a href="/index">Go to index page</a>
+        <form onsubmit="event.preventDefault(); calculateRoute();">
+            <input type="text" id="start" placeholder="Start address" required>
+            <input type="text" id="waypoints" placeholder="Waypoints (separated by ;)">
+            <input type="text" id="end" placeholder="End address" required>
+            <button type="submit">Find Route</button>
+        </form>
+    </div>
+    <div id="map"></div>
+</body>
+</html>
