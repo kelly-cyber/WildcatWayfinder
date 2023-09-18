@@ -1,0 +1,37 @@
+
+body {
+  background-image: url("/static/coolmap2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.container h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.container p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.container a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.container a:hover {
+  color: #ff0;
+}
+
+
+.card {
+  background-color: #424242;
+  color: white;
+}
