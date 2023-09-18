@@ -4,4 +4,6 @@ Developed features such as Google Maps API integration, route optimization, cust
 
 Utilized MongoDB, Docker, HTML, JavaScript, CSS, Materialize, RESTful API, Azure, Flask
 
+Please view project details in short slide deck: https://docs.google.com/presentation/d/1rfkTilT99wHaAy-BNG7u9pNrwhNj2NOTiozv3Xbb8jw/edit?usp=sharing
+
 
