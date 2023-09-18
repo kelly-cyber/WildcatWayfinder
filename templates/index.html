@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Flask App</title>
-    <style>
-        body {
-          background-color: #000000;
-          color: #FFFFFF;
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 14px;
-          line-height: 1.5;
-          padding: 20px;
-        }
-
-        pre {
-          overflow-x: auto;
-        }
-
-        code {
-          display: block;
-          background-color: #1E1E1E;
-          padding: 10px;
-          border-radius: 5px;
-        }
-
-        a {
-            color: #00FFFF;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    
 </head>
 <body>
-    <h1>Welcome to my Flask App!</h1>
-    <p>Click <a href="{{ url_for('records') }}">here</a> to view records.</p>
-    <p>Click <a href="{{ url_for('create') }}">here</a> to create a record.</p>
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo center">Wildcat Wayfinder</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="{{ url_for('records') }}">View Records</a></li>
+                <li><a href="{{ url_for('create') }}">Create Location</a></li>
+                <li><a href="{{ url_for('route') }}">Create Route</a></li>
+                <li><a href="{{ url_for('show_map') }}">View Map</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>UNH Maps</h1>
+        <p>Click <a href="{{ url_for('records') }}">here</a> to view records.</p>
+        <p>Click <a href="{{ url_for('create') }}">here</a> to create a Location.</p>
+        <p>Click <a href="{{ url_for('route') }}">here</a> to create a route.</p>
+        <p>Click <a href="{{ url_for('show_map') }}">here</a> to view the map.</p>
+        <p>Click <a href="{{ url_for('contact') }}">here</a> to contact us.</p>
+    </div>
 </body>
 </html>

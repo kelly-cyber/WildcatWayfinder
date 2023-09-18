@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        nav {
+        background-color: #2196F3;
+        }
+
+    .nav-wrapper .brand-logo, .nav-wrapper a {
+        color: white;
+    }
+    .btn {
+        background-color: #2196F3;
+    }
+    select option {
+        color: #2196F3;
+    }
+    .blue-options option {
+    color: #2196F3;
+    }
+    .dropdown-content li>span {
+    color: #2196F3 !important;
+    }
+
+    .navbar-default .navbar-brand,
+    .navbar-default .navbar-brand:hover {
+        color: #fff;
+        font-size: 1.5em;
+    }
+
+    .navbar-default .navbar-nav > li > a,
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #fff;
+        font-size: 1.2em;
+    }
+
+    .collapsible {
+        background-color: #EEEEEE;
+        color: black;
+          cursor: pointer;
+          padding: 10px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+        }
+
+        img {
+            max-width: 150px;
+        }
+
+        .collapsible:hover {
+          background-color: #DDDDDD;
+        }
+
+        .collapsible:after {
+        content: '\2304';
+        font-size: 13px;
+        color: black;
+        float: right;
+        margin-left: 5px;
+        }
+
+        .active:after {
+        content: "\2303";
+        }
+
+        .content {
+          padding: 0 18px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.2s ease-out;
+          background-color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default" style="background-color: #2196F3;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Wildcat Wayfinder</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}" >Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col s12">
+                <h1>Contact Us</h1>
+                <button type="button" class="collapsible">Jacob Copp</button>
+                <div class="content">
+                    <img src="../static/images/jc.jpg" alt="Jacob portrait">
+                    <p><a href="mailto:jcopp007@gmail.com">Message</a>.</p>
+                </div>
+
+                <button type="button" class="collapsible">Luke Grella</button>
+                <div class="content">
+                    <img src="../static/images/blank.jpeg" alt="Luke portrait">
+                    <p><a href="mailto:GorillaLuke16@gmail.com">Message</a>.</p>
+                </div>
+
+                <button type="button" class="collapsible">Raghav Rajkumar</button>
+                <div class="content">
+                    <img src="../static/images/blank.jpeg" alt="Raghav portrait">
+                    <p><a href="mailto:raghav6482@outlook.com">Message</a>.</p>
+                </div>
+
+                <button type="button" class="collapsible">Mitch Tilton</button>
+                <div class="content">
+                    <img src="../static/images/mt.jpg" alt="Mitch portrait">
+                    <p><a href="mailto:mitch1of2@gmail.com">Message</a>.</p>
+                </div>
+
+                <button type="button" class="collapsible">Kelly Zhang</button>
+                <div class="content">
+                    <img src="../static/images/blank.jpeg" alt="Kelly portrait">
+                    <p><a href="mailto:kelly.zhang748@gmail.com">Message</a>.</p>
+                </div>
+
+                <script>
+                    var coll = document.getElementsByClassName("collapsible");
+                    var i;
+
+                    for (i = 0; i < coll.length; i++) {
+                      coll[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var content = this.nextElementSibling;
+                        if (content.style.maxHeight){
+                          content.style.maxHeight = null;
+                        } else {
+                          content.style.maxHeight = content.scrollHeight + "px";
+                        }
+                      });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

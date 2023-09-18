@@ -1,74 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<!-- Use html tags to construct a table, then iterate over the records and add a row for each record -->
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Records</title>
-    <style>
-        table, th, td {
-            border: 1px solid white;
-            padding: 5px;
-        }
 
-
-        th, td {
-            width: 150px;
-        }
-
-        .center {
-            display:flex;
-            justify-content: center;
-            text-align: center;
-        }
-
-        body {
-          background-color: #000000;
-          color: #FFFFFF;
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 14px;
-          line-height: 1.5;
-          padding: 20px;
-        }
-
-        h1 {
-            display: flex;
-            justify-content: center;
-            width: 500px;
-            margin: 0 auto;
-            padding: 10px;
-            color: white;
-        }
-
-        text {
-            color: white;
-        }
-
-        a {
-            color: #00FFFF;
-        }
-
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
 </head>
-<h1>Records</h1>
-<div class="center">
-    <p>Click <a href="{{ url_for('index') }}">here</a> to go back.<br>Click <a href="{{ url_for('create') }}">here</a> to create a record.</p>
-</div>
-<div class="center">
-    <body>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>City</th>
-            </tr>
-            {% for record in records %}
-            <tr>
-                <td>{{ record.name }}</td>
-                <td>{{ record.age }}</td>
-                <td>{{ record.city }}</td>
-            </tr>
-            {% endfor %}
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="btn btn-primary" style="position: absolute; top: 10px; right: 10px;">Go Back</a>
+        <a href="{{ url_for('create') }}" class="btn btn-primary">Create a Location</a>
+        <br>
+        <h1 class="jumbotron">Location Records</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Address</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record['location'] }}</td>
+                        <td>{{ record['address'] }}</td>
+                        <td>{{ record['description'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
-    </body>
-</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 </html>
+

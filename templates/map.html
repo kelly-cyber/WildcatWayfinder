@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Google Maps </title>
+    <title>Wildcat Wayfinder</title>
     <style>
         #map {
             height: 90%;
@@ -11,11 +11,34 @@
         #navbar {
             height: 10%;
             width: 100%;
-            background-color: #f8f9fa;
+            background-color: #4a4a4a;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+
+        #navbar h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .center {
+            display:flex;
+            justify-content: center;
+            text-align: center;
         }
 
         html, body {
@@ -38,6 +61,7 @@
             });
 
             directionsRenderer.setMap(map);
+            calculateRoute();
         }
 
         async function geocodeAddress(address) {
@@ -55,6 +79,7 @@
             const end = document.getElementById('end').value;
             const waypointsInput = document.getElementById('waypoints').value;
             const waypointsAddresses = waypointsInput.split(';');
+
 
             try {
                 const startCoords = await geocodeAddress(start);
@@ -77,7 +102,7 @@
                     destination: endCoords,
                     waypoints: waypoints,
                     optimizeWaypoints: true,
-                    travelMode: 'WALKING'
+                    travelMode: document.getElementById('travel_mode').value
                 }, function(response, status) {
                     if (status === 'OK') {
                         directionsRenderer.setDirections(response);
@@ -93,14 +118,19 @@
 </head>
 <body onload="initMap()">
     <div id="navbar">
-        <a href="/index">Go to index page</a>
-        <form onsubmit="event.preventDefault(); calculateRoute();">
-            <input type="text" id="start" placeholder="Start address" required>
-            <input type="text" id="waypoints" placeholder="Waypoints (separated by ;)">
-            <input type="text" id="end" placeholder="End address" required>
-            <button type="submit">Find Route</button>
+        <a href="/">Go home</a>
+        <div class="center">
+        <h1>UNH Maps</h1>
+        </div>
+        <form>
+            <input type="hidden" id="start" placeholder="Start address" value="{{ start }}" required>
+            <input type="hidden" id="waypoints" placeholder="Waypoints (separated by ;)" value="{{ waypoints }}">
+            <input type="hidden" id="end" placeholder="End address" value="{{ end }}" required>
+            <input type="hidden" id="travel_mode" value="{{ travel_mode }}" required>
+            <button hidden="hidden" type="submit">Find Route</button>
         </form>
     </div>
     <div id="map"></div>
 </body>
 </html>
+
